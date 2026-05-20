@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin EcoShop</title>
+
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>⚙️ Quản trị EcoShop</h1>
+    </header>
+
+    <section class="form-section">
+      <input type="text" id="name" placeholder="Tên sản phẩm" />
+
+      <input type="number" id="price" placeholder="Giá" />
+
+      <input type="text" id="image" placeholder="Link ảnh" />
+
+      <button onclick="addNewProduct()">Thêm sản phẩm</button>
+    </section>
+
+    <section>
+      <table>
+        <thead>
+          <tr>
+            <th>Tên</th>
+            <th>Giá</th>
+            <th>Ảnh</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+
+        <tbody id="admin-product-list"></tbody>
+      </table>
+    </section>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/admin.js"></script>
+  </body>
+</html>
