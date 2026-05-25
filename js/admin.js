@@ -1,29 +1,35 @@
-async function displayAdminProducts() {
+async function displayAdminProducts(){
 
-    const products = await getProducts();
+    const products =
+    await getProducts();
 
     const list =
-    document.getElementById("admin-product-list");
+    document.getElementById(
+        "admin-product-list"
+    );
 
     let html = "";
 
-    products.forEach(product => {
+    products.forEach(p=>{
 
         html += `
             <tr>
 
-                <td>${product.name}</td>
-
-                <td>${product.price}</td>
-
                 <td>
-                    <img src="${product.image}">
+                    <img src="${p.image}">
                 </td>
 
+                <td>${p.name}</td>
+
+                <td>${p.price}</td>
+
                 <td>
-                    <button onclick="removeProduct('${product.id}')">
+
+                    <button
+                    onclick="removeProduct('${p.id}')">
                         Xóa
                     </button>
+
                 </td>
 
             </tr>
@@ -33,7 +39,8 @@ async function displayAdminProducts() {
     list.innerHTML = html;
 }
 
-async function addNewProduct() {
+// THÊM
+async function addNewProduct(){
 
     const name =
     document.getElementById("name").value;
@@ -44,20 +51,19 @@ async function addNewProduct() {
     const image =
     document.getElementById("image").value;
 
-    const product = {
+    await addProduct({
         name,
         price,
         image
-    };
+    });
 
-    await addProduct(product);
-
-    alert("Đã thêm sản phẩm!");
+    alert("Đã thêm!");
 
     displayAdminProducts();
 }
 
-async function removeProduct(id) {
+// XÓA
+async function removeProduct(id){
 
     await deleteProduct(id);
 
