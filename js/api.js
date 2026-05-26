@@ -3,31 +3,31 @@ const API_URL =
 
 async function getProducts(){
 
-    const response =
-    await fetch(API_URL);
+const response =
+await fetch(API_URL);
 
-    return await response.json();
+return await response.json();
 }
 
 async function addProduct(product){
 
-    await fetch(API_URL,{
+await fetch(API_URL,{
 
-        method:"POST",
+method:"POST",
 
-        headers:{
-            "Content-Type":
-            "application/json"
-        },
+headers:{
+"Content-Type":
+"application/json"
+},
 
-        body:JSON.stringify(product)
-    });
+body:JSON.stringify(product)
+});
 }
 
 async function deleteProduct(id){
 
-    await fetch(`${API_URL}/${id}`,{
+await fetch(`${API_URL}/${id}`,{
 
-        method:"DELETE"
-    });
+method:"DELETE"
+});
 }

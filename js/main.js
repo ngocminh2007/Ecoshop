@@ -1,137 +1,141 @@
 let allProducts = [];
 
-let cart = [];
-
-// HIỂN THỊ
 async function displayProducts(){
 
-    allProducts =
-    await getProducts();
+allProducts =
+await getProducts();
 
-    renderProducts(allProducts);
+renderProducts(allProducts);
+
+loadCartCount();
 }
 
-// RENDER
 function renderProducts(products){
 
-    const box =
-    document.getElementById("product-list");
+const box =
+document.getElementById(
+"product-list"
+);
 
-    let html = "";
+let html = "";
 
-    products.forEach(p=>{
+products.forEach(p=>{
 
-        html += `
-            <div class="card">
+html += `
+<div class="card">
 
-                <img src="${p.image}">
+<img
+src="${p.image}"
 
-                <div class="card-content">
+onclick='viewDetail(
+${JSON.stringify(p)}
+)'>
 
-                    <h3>${p.name}</h3>
+<div class="card-content">
 
-                    <p class="price">
-                        ${p.price} VNĐ
-                    </p>
+<h3>${p.name}</h3>
 
-                    <div class="card-buttons">
+<p class="price">
 
-                        <button
-                        onclick="buyNow('${p.name}')">
-                            Mua
-                        </button>
+${p.price} VNĐ
 
-                        <button
-                        onclick="addToCart('${p.name}')">
-                            🛒
-                        </button>
+</p>
 
-                        <button
-                        onclick="likeProduct('${p.name}')">
-                            ❤️
-                        </button>
+<div class="card-buttons">
 
-                    </div>
+<button
+onclick='addToCart(
+${JSON.stringify(p)}
+)'>
 
-                </div>
+🛒
 
-            </div>
-        `;
-    });
+</button>
 
-    box.innerHTML = html;
+<button
+onclick='viewDetail(
+${JSON.stringify(p)}
+)'>
+
+Chi tiết
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+`;
+});
+
+box.innerHTML = html;
 }
 
-// MUA
-function buyNow(name){
+// DETAIL
+function viewDetail(product){
 
-    alert(
-        "Bạn đã mua: " + name
-    );
+localStorage.setItem(
+"detail",
+JSON.stringify(product)
+);
+
+window.location =
+"product-detail.html";
 }
 
-// CART
-function addToCart(name){
+// ADD CART
+function addToCart(product){
 
-    cart.push(name);
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
 
-    document.getElementById(
-        "cart-count"
-    ).innerText = cart.length;
+cart.push(product);
 
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
 
-    alert(
-        "Đã thêm vào giỏ hàng"
-    );
+loadCartCount();
+
+alert(
+"Đã thêm vào giỏ hàng!"
+);
 }
 
-// LIKE
-function likeProduct(name){
+// COUNT
+function loadCartCount(){
 
-    alert(
-        "❤️ Bạn thích: " + name
-    );
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+document.getElementById(
+"cart-count"
+).innerText =
+cart.length;
 }
 
 // SEARCH
 function searchProducts(){
 
-    const keyword =
-    document.getElementById(
-        "searchInput"
-    ).value.toLowerCase();
+const keyword =
+document.getElementById(
+"searchInput"
+).value.toLowerCase();
 
-    const filtered =
-    allProducts.filter(p=>
+const filtered =
+allProducts.filter(p=>
 
-        p.name.toLowerCase()
-        .includes(keyword)
-    );
+p.name.toLowerCase()
+.includes(keyword)
+);
 
-    renderProducts(filtered);
-}
-
-// LOAD CART
-function loadCart(){
-
-    const savedCart =
-    localStorage.getItem("cart");
-
-    if(savedCart){
-
-        cart =
-        JSON.parse(savedCart);
-
-        document.getElementById(
-            "cart-count"
-        ).innerText = cart.length;
-    }
+renderProducts(filtered);
 }
 
 displayProducts();
-
-loadCart();

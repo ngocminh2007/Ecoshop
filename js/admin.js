@@ -1,75 +1,90 @@
 async function displayAdminProducts(){
 
-    const products =
-    await getProducts();
+const products =
+await getProducts();
 
-    const list =
-    document.getElementById(
-        "admin-product-list"
-    );
+const list =
+document.getElementById(
+"admin-product-list"
+);
 
-    let html = "";
+let html = "";
 
-    products.forEach(p=>{
+products.forEach(p=>{
 
-        html += `
-            <tr>
+html += `
+<tr>
 
-                <td>
-                    <img src="${p.image}">
-                </td>
+<td>
 
-                <td>${p.name}</td>
+<img src="${p.image}">
 
-                <td>${p.price}</td>
+</td>
 
-                <td>
+<td>
+${p.name}
+</td>
 
-                    <button
-                    onclick="removeProduct('${p.id}')">
-                        Xóa
-                    </button>
+<td>
+${p.price}
+</td>
 
-                </td>
+<td>
 
-            </tr>
-        `;
-    });
+<button
+onclick="removeProduct(
+'${p.id}'
+)">
 
-    list.innerHTML = html;
+Xóa
+
+</button>
+
+</td>
+
+</tr>
+`;
+});
+
+list.innerHTML = html;
 }
 
-// THÊM
 async function addNewProduct(){
 
-    const name =
-    document.getElementById("name").value;
+const name =
+document.getElementById(
+"name"
+).value;
 
-    const price =
-    document.getElementById("price").value;
+const price =
+document.getElementById(
+"price"
+).value;
 
-    const image =
-    document.getElementById("image").value;
+const image =
+document.getElementById(
+"image"
+).value;
 
-    await addProduct({
-        name,
-        price,
-        image
-    });
+await addProduct({
 
-    alert("Đã thêm!");
+name,
+price,
+image
+});
 
-    displayAdminProducts();
+alert("Đã thêm!");
+
+displayAdminProducts();
 }
 
-// XÓA
 async function removeProduct(id){
 
-    await deleteProduct(id);
+await deleteProduct(id);
 
-    alert("Đã xóa!");
+alert("Đã xóa!");
 
-    displayAdminProducts();
+displayAdminProducts();
 }
 
 displayAdminProducts();
