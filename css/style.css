@@ -452,3 +452,50 @@ footer {
 
     margin-top: 15px;
 }
+/* CHECKOUT */
+.checkout {
+
+    padding: 40px;
+}
+
+.checkout h2 {
+
+    margin-bottom: 20px;
+
+    color: #2e7d32;
+}
+
+.checkout-form {
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.checkout-form input,
+.checkout-form textarea {
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    width: 100%;
+}
+
+.checkout-form button {
+
+    width: 200px;
+}
