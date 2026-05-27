@@ -1,86 +1,50 @@
-// CHECK LOGIN
-if(
-    localStorage.getItem(
-        "loggedIn"
-    ) !== "true"
-){
+let allProducts = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    window.location =
-    "login.html";
+// CHECK LOGIN
+if (localStorage.getItem("loggedIn") !== "true") {
+    window.location = "login.html";
 }
 
-let allProducts = [];
-
 // LOAD PRODUCTS
-async function displayProducts(){
-
-    allProducts =
-    await getProducts();
-
+async function displayProducts() {
+    allProducts = await getProducts();
     renderProducts(allProducts);
-
     loadCartCount();
 }
 
-// RENDER PRODUCTS
-function renderProducts(products){
+// RENDER
+function renderProducts(products) {
 
-    const box =
-    document.getElementById(
-        "product-list"
-    );
+    const box = document.getElementById("product-list");
 
     let html = "";
 
-    products.forEach(p=>{
+    products.forEach(p => {
 
         html += `
-            <div class="card">
+        <div class="card">
 
-                <img
-                src="${p.image}"
+            <img src="${p.image}" onclick="viewDetail('${p.id}')">
 
-                onclick='viewDetail(
-                    ${JSON.stringify(p)}
-                )'>
+            <div class="card-content">
 
-                <div class="card-content">
+                <h3>${p.name}</h3>
 
-                    <h3>
-                        ${p.name}
-                    </h3>
+                <p class="price">
+                    ${Number(p.price).toLocaleString()} VNĐ
+                </p>
 
-                    <p class="price">
+                <div class="card-buttons">
 
-                        ${p.price} VNĐ
+                    <button onclick="addToCart('${p.id}')">🛒</button>
 
-                    </p>
-
-                    <div class="card-buttons">
-
-                        <button
-                        onclick='addToCart(
-                            ${JSON.stringify(p)}
-                        )'>
-
-                            🛒
-
-                        </button>
-
-                        <button
-                        onclick='viewDetail(
-                            ${JSON.stringify(p)}
-                        )'>
-
-                            Chi tiết
-
-                        </button>
-
-                    </div>
+                    <button onclick="viewDetail('${p.id}')">Chi tiết</button>
 
                 </div>
 
             </div>
+        </div>
         `;
     });
 
@@ -88,80 +52,69 @@ function renderProducts(products){
 }
 
 // VIEW DETAIL
-function viewDetail(product){
+function viewDetail(id) {
+    let product = allProducts.find(p => p.id == id);
 
-    localStorage.setItem(
-        "detail",
-        JSON.stringify(product)
-    );
+    localStorage.setItem("detail", JSON.stringify(product));
 
-    window.location =
-    "product-detail.html";
+    window.location = "product-detail.html";
 }
 
 // ADD TO CART
-function addToCart(product){
+function addToCart(id) {
 
-    let cart =
-    JSON.parse(
-        localStorage.getItem("cart")
-    ) || [];
+    let product = allProducts.find(p => p.id == id);
 
-    cart.push(product);
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
+    let existing = cart.find(item => item.id == id);
+
+    if (existing) {
+        existing.quantity = (existing.quantity || 1) + 1;
+    } else {
+        cart.push({
+            ...product,
+            quantity: 1
+        });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
 
     loadCartCount();
 
-    alert(
-        "🛒 Đã thêm vào giỏ hàng!"
-    );
+    alert("🛒 Đã thêm vào giỏ!");
 }
 
-// LOAD CART COUNT
-function loadCartCount(){
+// COUNT CART
+function loadCartCount() {
 
-    let cart =
-    JSON.parse(
-        localStorage.getItem("cart")
-    ) || [];
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    document.getElementById(
-        "cart-count"
-    ).innerText =
-    cart.length;
+    let count = 0;
+
+    cart.forEach(item => {
+        count += item.quantity || 1;
+    });
+
+    document.getElementById("cart-count").innerText = count;
 }
 
 // SEARCH
-function searchProducts(){
+function searchProducts() {
 
-    const keyword =
-    document.getElementById(
-        "searchInput"
-    ).value.toLowerCase();
+    const keyword = document.getElementById("searchInput").value.toLowerCase();
 
-    const filtered =
-    allProducts.filter(p=>
-
-        p.name.toLowerCase()
-        .includes(keyword)
+    const filtered = allProducts.filter(p =>
+        p.name.toLowerCase().includes(keyword)
     );
 
     renderProducts(filtered);
 }
 
 // LOGOUT
-function logout(){
-
-    localStorage.removeItem(
-        "loggedIn"
-    );
-
-    window.location =
-    "login.html";
+function logout() {
+    localStorage.removeItem("loggedIn");
+    window.location = "login.html";
 }
 
 displayProducts();
