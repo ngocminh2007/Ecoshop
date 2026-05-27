@@ -20,6 +20,8 @@
 
         <a href="products.html"> Sản phẩm </a>
 
+        <a href="cart.html"> Giỏ hàng </a>
+
         <a href="about.html"> Giới thiệu </a>
 
         <a href="contact.html"> Liên hệ </a>
@@ -27,9 +29,13 @@
         <a href="admin.html"> Admin </a>
       </nav>
 
-      <div class="cart">
-        🛒
-        <span id="cart-count"> 0 </span>
+      <div class="nav-right">
+        <div class="cart">
+          🛒
+          <span id="cart-count"> 0 </span>
+        </div>
+
+        <button onclick="logout()">Đăng xuất</button>
       </div>
     </header>
 
@@ -38,9 +44,9 @@
       <div class="hero-content">
         <h1>Organic Food Store</h1>
 
-        <p>Thực phẩm sạch cho cuộc sống khỏe mạnh</p>
+        <p>Thực phẩm hữu cơ sạch, an toàn cho sức khỏe</p>
 
-        <a href="products.html" class="btn"> Mua ngay </a>
+        <a href="products.html" class="btn"> Khám phá ngay </a>
       </div>
     </section>
 
@@ -54,6 +60,17 @@
       />
     </section>
 
+    <!-- CATEGORY -->
+    <section class="categories">
+      <div class="category">🥬 Rau củ</div>
+
+      <div class="category">🍎 Trái cây</div>
+
+      <div class="category">🥛 Đồ uống</div>
+
+      <div class="category">🌾 Ngũ cốc</div>
+    </section>
+
     <!-- PRODUCTS -->
     <section class="feature">
       <h2>🌿 Sản phẩm nổi bật</h2>
@@ -61,7 +78,35 @@
       <div id="product-list" class="product-grid"></div>
     </section>
 
-    <footer>© 2026 EcoShop</footer>
+    <!-- BANNER -->
+    <section class="banner">
+      <div class="banner-content">
+        <h2>💚 Sống xanh mỗi ngày</h2>
+
+        <p>EcoShop mang đến thực phẩm sạch và an toàn</p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-content">
+        <div>
+          <h3>🌿 EcoShop</h3>
+
+          <p>Organic Food Store</p>
+        </div>
+
+        <div>
+          <h3>Liên hệ</h3>
+
+          <p>📧 ecoshop@gmail.com</p>
+
+          <p>📞 0123456789</p>
+        </div>
+      </div>
+
+      <p class="copyright">© 2026 EcoShop</p>
+    </footer>
 
     <script src="js/api.js"></script>
     <script src="js/main.js"></script>

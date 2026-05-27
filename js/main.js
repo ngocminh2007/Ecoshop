@@ -1,141 +1,167 @@
+// CHECK LOGIN
+if(
+    localStorage.getItem(
+        "loggedIn"
+    ) !== "true"
+){
+
+    window.location =
+    "login.html";
+}
+
 let allProducts = [];
 
+// LOAD PRODUCTS
 async function displayProducts(){
 
-allProducts =
-await getProducts();
+    allProducts =
+    await getProducts();
 
-renderProducts(allProducts);
+    renderProducts(allProducts);
 
-loadCartCount();
+    loadCartCount();
 }
 
+// RENDER PRODUCTS
 function renderProducts(products){
 
-const box =
-document.getElementById(
-"product-list"
-);
+    const box =
+    document.getElementById(
+        "product-list"
+    );
 
-let html = "";
+    let html = "";
 
-products.forEach(p=>{
+    products.forEach(p=>{
 
-html += `
-<div class="card">
+        html += `
+            <div class="card">
 
-<img
-src="${p.image}"
+                <img
+                src="${p.image}"
 
-onclick='viewDetail(
-${JSON.stringify(p)}
-)'>
+                onclick='viewDetail(
+                    ${JSON.stringify(p)}
+                )'>
 
-<div class="card-content">
+                <div class="card-content">
 
-<h3>${p.name}</h3>
+                    <h3>
+                        ${p.name}
+                    </h3>
 
-<p class="price">
+                    <p class="price">
 
-${p.price} VNĐ
+                        ${p.price} VNĐ
 
-</p>
+                    </p>
 
-<div class="card-buttons">
+                    <div class="card-buttons">
 
-<button
-onclick='addToCart(
-${JSON.stringify(p)}
-)'>
+                        <button
+                        onclick='addToCart(
+                            ${JSON.stringify(p)}
+                        )'>
 
-🛒
+                            🛒
 
-</button>
+                        </button>
 
-<button
-onclick='viewDetail(
-${JSON.stringify(p)}
-)'>
+                        <button
+                        onclick='viewDetail(
+                            ${JSON.stringify(p)}
+                        )'>
 
-Chi tiết
+                            Chi tiết
 
-</button>
+                        </button>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
-</div>
-`;
-});
+            </div>
+        `;
+    });
 
-box.innerHTML = html;
+    box.innerHTML = html;
 }
 
-// DETAIL
+// VIEW DETAIL
 function viewDetail(product){
 
-localStorage.setItem(
-"detail",
-JSON.stringify(product)
-);
+    localStorage.setItem(
+        "detail",
+        JSON.stringify(product)
+    );
 
-window.location =
-"product-detail.html";
+    window.location =
+    "product-detail.html";
 }
 
-// ADD CART
+// ADD TO CART
 function addToCart(product){
 
-let cart =
-JSON.parse(
-localStorage.getItem("cart")
-) || [];
+    let cart =
+    JSON.parse(
+        localStorage.getItem("cart")
+    ) || [];
 
-cart.push(product);
+    cart.push(product);
 
-localStorage.setItem(
-"cart",
-JSON.stringify(cart)
-);
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
 
-loadCartCount();
+    loadCartCount();
 
-alert(
-"Đã thêm vào giỏ hàng!"
-);
+    alert(
+        "🛒 Đã thêm vào giỏ hàng!"
+    );
 }
 
-// COUNT
+// LOAD CART COUNT
 function loadCartCount(){
 
-let cart =
-JSON.parse(
-localStorage.getItem("cart")
-) || [];
+    let cart =
+    JSON.parse(
+        localStorage.getItem("cart")
+    ) || [];
 
-document.getElementById(
-"cart-count"
-).innerText =
-cart.length;
+    document.getElementById(
+        "cart-count"
+    ).innerText =
+    cart.length;
 }
 
 // SEARCH
 function searchProducts(){
 
-const keyword =
-document.getElementById(
-"searchInput"
-).value.toLowerCase();
+    const keyword =
+    document.getElementById(
+        "searchInput"
+    ).value.toLowerCase();
 
-const filtered =
-allProducts.filter(p=>
+    const filtered =
+    allProducts.filter(p=>
 
-p.name.toLowerCase()
-.includes(keyword)
-);
+        p.name.toLowerCase()
+        .includes(keyword)
+    );
 
-renderProducts(filtered);
+    renderProducts(filtered);
+}
+
+// LOGOUT
+function logout(){
+
+    localStorage.removeItem(
+        "loggedIn"
+    );
+
+    window.location =
+    "login.html";
 }
 
 displayProducts();
