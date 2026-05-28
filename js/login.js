@@ -1,41 +1,43 @@
-// TÀI KHOẢN MẪU
-const USERNAME = "admin";
+// js/login.js
 
-const PASSWORD = "123456";
+const accounts = [
+    { username: "admin", password: "123456" },
+    { username: "minh", password: "111111" },
+    { username: "user", password: "123123" }
+];
 
-// LOGIN
-function login(){
+function login() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const errorEl = document.getElementById("error");
 
-    const username =
-    document.getElementById(
-        "username"
-    ).value;
+    errorEl.textContent = "";
 
-    const password =
-    document.getElementById(
-        "password"
-    ).value;
-
-    if(
-        username === USERNAME &&
-        password === PASSWORD
-    ){
-
-        localStorage.setItem(
-            "loggedIn",
-            "true"
-        );
-
-        window.location =
-        "index.html";
+    if (!username || !password) {
+        errorEl.textContent = "Vui lòng nhập tên đăng nhập và mật khẩu!";
+        return;
     }
 
-    else{
+    const user = accounts.find(acc => acc.username === username && acc.password === password);
 
-        document.getElementById(
-            "error"
-        ).innerText =
-
-        "Sai tài khoản hoặc mật khẩu!";
+    if (user) {
+        localStorage.setItem("loggedIn", "true");
+        localStorage.setItem("currentUser", username);
+        
+        window.location.href = "index.html";   // Chuyển về trang chủ
+    } else {
+        errorEl.textContent = "❌ Sai tên đăng nhập hoặc mật khẩu!";
     }
 }
+
+// Cho phép nhấn Enter để đăng nhập
+document.addEventListener("DOMContentLoaded", () => {
+    const passwordInput = document.getElementById("password");
+    if (passwordInput) {
+        passwordInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                login();
+            }
+        });
+    }
+});

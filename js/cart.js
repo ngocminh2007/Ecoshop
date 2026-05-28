@@ -1,90 +1,138 @@
+// js/cart.js
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const box = document.getElementById("cart-items");
-
+// Render giỏ hàng
 function renderCart() {
+    const cartItems = document.getElementById("cart-items");
+    if (!cartItems) return;
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = `
+            <div class="text-center py-20 bg-white rounded-3xl shadow">
+                <p class="text-6xl mb-4">🛒</p>
+                <h3 class="text-xl font-medium text-gray-500">Giỏ hàng của bạn đang trống</h3>
+                <a href="products.html" class="mt-6 inline-block bg-emerald-600 text-white px-8 py-3 rounded-2xl hover:bg-emerald-700">
+                    Mua sắm ngay
+                </a>
+            </div>
+        `;
+        updateTotal();
+        return;
+    }
 
     let html = "";
     let total = 0;
 
     cart.forEach((item, index) => {
-
-        let qty = item.quantity || 1;
-
-        total += item.price * qty;
+        const qty = item.quantity || 1;
+        const itemTotal = item.price * qty;
+        total += itemTotal;
 
         html += `
-        <div class="card">
-
-            <img src="${item.image}">
-
-            <div class="card-content">
-
-                <h3>${item.name}</h3>
-
-                <p>${Number(item.price).toLocaleString()} VNĐ</p>
-
-                <p>Số lượng: ${qty}</p>
-
-                <button onclick="removeItem(${index})">❌ Xóa</button>
-
+            <div class="flex gap-6 bg-white p-6 rounded-3xl shadow-md">
+                <img src="${item.image || 'https://via.placeholder.com/120'}" 
+                     class="w-28 h-28 object-cover rounded-2xl">
+                
+                <div class="flex-1">
+                    <h3 class="font-semibold text-lg">${item.name}</h3>
+                    <p class="text-emerald-600 font-bold text-xl mt-1">
+                        ${Number(item.price).toLocaleString('vi-VN')} ₫
+                    </p>
+                    
+                    <div class="flex items-center gap-4 mt-4">
+                        <div class="flex items-center border border-gray-300 rounded-2xl">
+                            <button onclick="changeQuantity(${index}, -1)" 
+                                    class="w-9 h-9 flex items-center justify-center text-xl hover:bg-gray-100">-</button>
+                            <span class="px-5 font-medium">${qty}</span>
+                            <button onclick="changeQuantity(${index}, 1)" 
+                                    class="w-9 h-9 flex items-center justify-center text-xl hover:bg-gray-100">+</button>
+                        </div>
+                        
+                        <button onclick="removeItem(${index})" 
+                                class="text-red-500 hover:text-red-600 font-medium flex items-center gap-1">
+                            ❌ Xóa
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="text-right font-bold text-lg">
+                    ${itemTotal.toLocaleString('vi-VN')} ₫
+                </div>
             </div>
-
-        </div>
         `;
     });
 
-    box.innerHTML = html;
-
-    document.getElementById("total-price").innerText =
-        "Tổng tiền: " + total.toLocaleString() + " VNĐ";
+    cartItems.innerHTML = html;
+    updateTotal();
 }
 
-// XÓA
-function removeItem(index) {
+// Cập nhật tổng tiền
+function updateTotal() {
+    const totalEl = document.getElementById("total-price");
+    if (!totalEl) return;
 
-    cart.splice(index, 1);
+    let total = cart.reduce((sum, item) => {
+        return sum + (item.price * (item.quantity || 1));
+    }, 0);
 
+    totalEl.textContent = total.toLocaleString('vi-VN') + " ₫";
+}
+
+// Thay đổi số lượng
+function changeQuantity(index, amount) {
+    if (!cart[index]) return;
+    
+    cart[index].quantity = (cart[index].quantity || 1) + amount;
+    
+    if (cart[index].quantity < 1) cart[index].quantity = 1;
+    
     localStorage.setItem("cart", JSON.stringify(cart));
-
     renderCart();
 }
 
-// CHECKOUT
-function checkout() {
+// Xóa sản phẩm
+function removeItem(index) {
+    if (confirm("Bạn có chắc muốn xóa sản phẩm này?")) {
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+    }
+}
 
-    const fullname = document.getElementById("fullname").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const address = document.getElementById("address").value.trim();
+// Đặt hàng
+function checkout() {
+    const name = document.getElementById("customer-name").value.trim();
+    const phone = document.getElementById("customer-phone").value.trim();
 
     if (cart.length === 0) {
-        alert("🛒 Giỏ hàng trống!");
+        alert("🛒 Giỏ hàng của bạn đang trống!");
         return;
     }
 
-    if (!fullname || !phone || !address) {
-        alert("⚠️ Nhập đầy đủ thông tin!");
+    if (!name || !phone) {
+        alert("⚠️ Vui lòng nhập đầy đủ Họ tên và Số điện thoại!");
         return;
     }
 
-    let order = {
-        fullname,
-        phone,
-        address,
+    const order = {
+        id: Date.now(),
+        fullname: name,
+        phone: phone,
         items: cart,
-        date: new Date().toISOString()
+        total: cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0),
+        date: new Date().toLocaleString('vi-VN')
     };
 
     let orders = JSON.parse(localStorage.getItem("orders")) || [];
     orders.push(order);
-
     localStorage.setItem("orders", JSON.stringify(orders));
 
-    alert("🎉 Đặt hàng thành công!");
+    alert(`🎉 Đặt hàng thành công!\n\nCảm ơn ${name} đã mua hàng tại EcoShop!`);
 
+    // Xóa giỏ hàng
     localStorage.removeItem("cart");
-
-    window.location = "index.html";
+    window.location.href = "index.html";
 }
 
-renderCart();
+// Khởi chạy khi tải trang
+document.addEventListener('DOMContentLoaded', renderCart);

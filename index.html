@@ -2,110 +2,202 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌿 EcoShop - Thực Phẩm Hữu Cơ</title>
 
-    <title>🌿 EcoShop</title>
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      .hero-bg {
+        background-image:
+          linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+          url("https://source.unsplash.com/random/1600x900/?organic-farm");
+        background-size: cover;
+        background-position: center;
+      }
+    </style>
   </head>
 
-  <body>
+  <body class="bg-gray-50 font-sans">
     <!-- NAVBAR -->
-    <header class="navbar">
-      <div class="logo">🌿 EcoShop</div>
-
-      <nav>
-        <a href="index.html"> Trang chủ </a>
-
-        <a href="products.html"> Sản phẩm </a>
-
-        <a href="cart.html"> Giỏ hàng </a>
-
-        <a href="about.html"> Giới thiệu </a>
-
-        <a href="contact.html"> Liên hệ </a>
-
-        <a href="admin.html"> Admin </a>
-      </nav>
-
-      <div class="nav-right">
-        <div class="cart">
-          🛒
-          <span id="cart-count"> 0 </span>
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <div
+          class="flex items-center gap-3 text-2xl font-bold text-emerald-600"
+        >
+          🌿 EcoShop
         </div>
 
-        <button onclick="logout()">Đăng xuất</button>
+        <nav
+          class="hidden md:flex items-center gap-8 text-gray-700 font-medium"
+        >
+          <a href="index.html" class="hover:text-emerald-600 transition"
+            >Trang chủ</a
+          >
+          <a href="products.html" class="hover:text-emerald-600 transition"
+            >Sản phẩm</a
+          >
+          <a href="cart.html" class="hover:text-emerald-600 transition"
+            >Giỏ hàng</a
+          >
+          <a href="about.html" class="hover:text-emerald-600 transition"
+            >Giới thiệu</a
+          >
+          <a href="contact.html" class="hover:text-emerald-600 transition"
+            >Liên hệ</a
+          >
+        </nav>
+
+        <div class="flex items-center gap-5">
+          <div
+            onclick="toggleCart()"
+            class="relative cursor-pointer text-2xl hover:text-emerald-600 transition"
+          >
+            🛒
+            <span
+              id="cart-count"
+              class="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
+              >0</span
+            >
+          </div>
+          <button
+            onclick="logout()"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-full text-sm font-medium transition"
+          >
+            Đăng xuất
+          </button>
+        </div>
       </div>
     </header>
 
     <!-- HERO -->
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Organic Food Store</h1>
-
-        <p>Thực phẩm hữu cơ sạch, an toàn cho sức khỏe</p>
-
-        <a href="products.html" class="btn"> Khám phá ngay </a>
+    <section class="hero-bg h-screen flex items-center text-white">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+          Sống Xanh - Ăn Sạch
+        </h1>
+        <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto">
+          Thực phẩm hữu cơ chất lượng cao • An toàn cho sức khỏe • Bảo vệ môi
+          trường
+        </p>
+        <a
+          href="products.html"
+          class="inline-block bg-white text-emerald-700 hover:bg-emerald-50 text-lg font-semibold px-12 py-5 rounded-full transition transform hover:scale-105 shadow-lg"
+        >
+          Khám phá ngay →
+        </a>
       </div>
     </section>
 
     <!-- SEARCH -->
-    <section class="search-section">
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="🔍 Tìm sản phẩm..."
-        onkeyup="searchProducts()"
-      />
+    <section class="max-w-4xl mx-auto -mt-8 px-6 relative z-10">
+      <div class="bg-white rounded-3xl shadow-2xl p-2">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="🔍 Tìm kiếm sản phẩm hữu cơ..."
+          onkeyup="searchProducts()"
+          class="w-full px-8 py-6 rounded-3xl focus:outline-none text-lg"
+        />
+      </div>
     </section>
 
-    <!-- CATEGORY -->
-    <section class="categories">
-      <div class="category">🥬 Rau củ</div>
-
-      <div class="category">🍎 Trái cây</div>
-
-      <div class="category">🥛 Đồ uống</div>
-
-      <div class="category">🌾 Ngũ cốc</div>
+    <!-- CATEGORIES -->
+    <section class="max-w-7xl mx-auto px-6 py-16">
+      <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+        Danh mục sản phẩm
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div
+          class="category-card bg-white rounded-3xl p-8 text-center hover:shadow-xl transition cursor-pointer"
+        >
+          🥬<br /><span class="block mt-4 font-semibold text-lg">Rau củ</span>
+        </div>
+        <div
+          class="category-card bg-white rounded-3xl p-8 text-center hover:shadow-xl transition cursor-pointer"
+        >
+          🍎<br /><span class="block mt-4 font-semibold text-lg">Trái cây</span>
+        </div>
+        <div
+          class="category-card bg-white rounded-3xl p-8 text-center hover:shadow-xl transition cursor-pointer"
+        >
+          🥛<br /><span class="block mt-4 font-semibold text-lg">Đồ uống</span>
+        </div>
+        <div
+          class="category-card bg-white rounded-3xl p-8 text-center hover:shadow-xl transition cursor-pointer"
+        >
+          🌾<br /><span class="block mt-4 font-semibold text-lg"
+            >Ngũ cốc & Hạt</span
+          >
+        </div>
+      </div>
     </section>
 
-    <!-- PRODUCTS -->
-    <section class="feature">
-      <h2>🌿 Sản phẩm nổi bật</h2>
+    <!-- SẢN PHẨM NỔI BẬT -->
+    <section class="max-w-7xl mx-auto px-6 pb-20">
+      <div class="flex justify-between items-center mb-10">
+        <h2 class="text-3xl font-bold text-gray-800">🌿 Sản phẩm nổi bật</h2>
+        <a
+          href="products.html"
+          class="text-emerald-600 hover:text-emerald-700 font-medium flex items-center gap-2"
+        >
+          Xem tất cả →
+        </a>
+      </div>
 
-      <div id="product-list" class="product-grid"></div>
+      <div
+        id="product-list"
+        class="product-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+      ></div>
+
+      <!-- Phân trang -->
+      <div
+        id="pagination"
+        class="flex items-center justify-center gap-3 mt-16"
+      ></div>
     </section>
 
     <!-- BANNER -->
-    <section class="banner">
-      <div class="banner-content">
-        <h2>💚 Sống xanh mỗi ngày</h2>
-
-        <p>EcoShop mang đến thực phẩm sạch và an toàn</p>
+    <section class="bg-emerald-800 text-white py-16">
+      <div class="max-w-4xl mx-auto text-center px-6">
+        <h2 class="text-4xl font-bold mb-4">
+          💚 Sống xanh mỗi ngày cùng EcoShop
+        </h2>
+        <p class="text-lg">
+          Cam kết mang đến những sản phẩm sạch nhất cho gia đình bạn
+        </p>
       </div>
     </section>
 
     <!-- FOOTER -->
-    <footer>
-      <div class="footer-content">
+    <footer class="bg-gray-900 text-gray-400 py-12">
+      <div
+        class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10"
+      >
         <div>
-          <h3>🌿 EcoShop</h3>
-
-          <p>Organic Food Store</p>
+          <h3 class="text-white text-2xl font-bold mb-4">🌿 EcoShop</h3>
+          <p>Thực phẩm hữu cơ • Lựa chọn xanh cho tương lai</p>
         </div>
-
         <div>
-          <h3>Liên hệ</h3>
-
+          <h4 class="text-white mb-4">Liên hệ</h4>
           <p>📧 ecoshop@gmail.com</p>
-
-          <p>📞 0123456789</p>
+          <p>📞 0123 456 789</p>
+        </div>
+        <div>
+          <h4 class="text-white mb-4">Theo dõi</h4>
+          <div class="flex gap-5 text-3xl">
+            <span class="cursor-pointer hover:text-white">📘</span>
+            <span class="cursor-pointer hover:text-white">📸</span>
+            <span class="cursor-pointer hover:text-white">🐦</span>
+          </div>
         </div>
       </div>
-
-      <p class="copyright">© 2026 EcoShop</p>
+      <p class="text-center mt-12 text-sm">
+        © 2026 EcoShop. All rights reserved.
+      </p>
     </footer>
 
     <script src="js/api.js"></script>

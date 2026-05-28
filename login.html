@@ -2,27 +2,56 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌿 EcoShop - Đăng nhập</title>
 
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-
-    <title>Đăng nhập - EcoShop</title>
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <body class="login-body">
-    <div class="login-box">
-      <h1>🌿 EcoShop</h1>
+  <body
+    class="bg-gradient-to-br from-emerald-700 to-emerald-950 min-h-screen flex items-center justify-center"
+  >
+    <div class="max-w-md w-full mx-4">
+      <div class="bg-white rounded-3xl shadow-2xl p-10">
+        <div class="text-center mb-8">
+          <div class="text-6xl mb-4">🌿</div>
+          <h1 class="text-3xl font-bold text-emerald-700">EcoShop</h1>
+          <p class="text-gray-500 mt-1">Đăng nhập để tiếp tục</p>
+        </div>
 
-      <h2>Đăng nhập</h2>
+        <div class="space-y-6">
+          <div>
+            <input
+              type="text"
+              id="username"
+              placeholder="Tên đăng nhập"
+              class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-emerald-500 text-lg"
+            />
+          </div>
 
-      <input type="text" id="username" placeholder="Tên đăng nhập" />
+          <div>
+            <input
+              type="password"
+              id="password"
+              placeholder="Mật khẩu"
+              class="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-emerald-500 text-lg"
+            />
+          </div>
 
-      <input type="password" id="password" placeholder="Mật khẩu" />
+          <button
+            onclick="login()"
+            class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-4 rounded-2xl text-lg font-semibold transition"
+          >
+            Đăng nhập
+          </button>
+        </div>
 
-      <button onclick="login()">Đăng nhập</button>
-
-      <p id="error"></p>
+        <p
+          id="error"
+          class="text-red-500 text-center mt-4 font-medium min-h-[28px]"
+        ></p>
+      </div>
     </div>
 
     <script src="js/login.js"></script>

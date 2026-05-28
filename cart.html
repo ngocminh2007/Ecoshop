@@ -2,48 +2,89 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌿 EcoShop - Giỏ hàng</title>
 
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-
-    <title>🛒 Giỏ hàng</title>
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <body>
-    <header class="navbar">
-      <div class="logo">🛒 Giỏ hàng EcoShop</div>
-
-      <nav>
-        <a href="index.html"> Trang chủ </a>
-
-        <a href="products.html"> Sản phẩm </a>
-      </nav>
+  <body class="bg-gray-50 font-sans">
+    <!-- NAVBAR -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <div
+          class="flex items-center gap-3 text-2xl font-bold text-emerald-600"
+        >
+          🌿 EcoShop
+        </div>
+        <nav
+          class="hidden md:flex items-center gap-8 text-gray-700 font-medium"
+        >
+          <a href="index.html">Trang chủ</a>
+          <a href="products.html">Sản phẩm</a>
+          <a href="cart.html" class="text-emerald-600 font-semibold"
+            >Giỏ hàng</a
+          >
+        </nav>
+      </div>
     </header>
 
-    <section class="page">
-      <h2>🌿 Sản phẩm đã chọn</h2>
+    <div class="max-w-7xl mx-auto px-6 py-10">
+      <h1 class="text-3xl font-bold mb-8 flex items-center gap-3">
+        🛒 Giỏ hàng của bạn
+      </h1>
 
-      <div id="cart-items" class="product-grid"></div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <!-- Danh sách sản phẩm trong giỏ -->
+        <div class="lg:col-span-2">
+          <div id="cart-items" class="space-y-6">
+            <!-- Sản phẩm sẽ được load bằng JavaScript -->
+          </div>
+        </div>
 
-      <h2 id="total-price">Tổng tiền: 0 VNĐ</h2>
-    </section>
+        <!-- Sidebar tóm tắt đơn hàng -->
+        <div class="lg:col-span-1">
+          <div class="bg-white rounded-3xl shadow-lg p-8 sticky top-24">
+            <h3 class="text-xl font-semibold mb-6">Tóm tắt đơn hàng</h3>
 
-    <!-- FORM ORDER -->
-    <section class="checkout">
-      <h2>📦 Thông tin đặt hàng</h2>
+            <div class="flex justify-between text-lg mb-4">
+              <span class="text-gray-600">Tổng tiền:</span>
+              <span id="total-price" class="font-bold text-emerald-600"
+                >0 ₫</span
+              >
+            </div>
 
-      <div class="checkout-form">
-        <input type="text" id="fullname" placeholder="Họ và tên" />
+            <div class="border-t pt-6 mt-6">
+              <h4 class="font-medium mb-4">Thông tin đặt hàng</h4>
 
-        <input type="text" id="phone" placeholder="Số điện thoại" />
+              <input
+                type="text"
+                id="customer-name"
+                placeholder="Họ và tên"
+                class="w-full px-5 py-4 border border-gray-300 rounded-2xl mb-4 focus:outline-none focus:border-emerald-500"
+              />
 
-        <textarea id="address" rows="4" placeholder="Địa chỉ giao hàng">
-        </textarea>
+              <input
+                type="tel"
+                id="customer-phone"
+                placeholder="Số điện thoại"
+                class="w-full px-5 py-4 border border-gray-300 rounded-2xl mb-6 focus:outline-none focus:border-emerald-500"
+              />
 
-        <button onclick="checkout()">🛍️ Đặt hàng</button>
+              <button
+                onclick="checkout()"
+                class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-5 rounded-2xl text-lg font-semibold transition"
+              >
+                Đặt hàng ngay
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
 
     <script src="js/cart.js"></script>
   </body>
