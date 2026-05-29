@@ -4,17 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🌿 EcoShop - Thực Phẩm Hữu Cơ</title>
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css" />
-
     <style>
       .hero-bg {
         background-image:
-          linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+          linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
           url("https://source.unsplash.com/random/1600x900/?organic-farm");
         background-size: cover;
         background-position: center;
+      }
+      .hero-text {
+        animation: fadeInUp 1s ease forwards;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
     </style>
   </head>
@@ -26,11 +37,10 @@
         class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between"
       >
         <div
-          class="flex items-center gap-3 text-2xl font-bold text-emerald-600"
+          class="flex items-center gap-3 text-3xl font-bold text-emerald-600"
         >
           🌿 EcoShop
         </div>
-
         <nav
           class="hidden md:flex items-center gap-8 text-gray-700 font-medium"
         >
@@ -50,96 +60,93 @@
             >Liên hệ</a
           >
         </nav>
-
-        <div class="flex items-center gap-5">
-          <div
-            onclick="toggleCart()"
-            class="relative cursor-pointer text-2xl hover:text-emerald-600 transition"
+        <a
+          href="cart.html"
+          class="relative text-3xl hover:text-emerald-600 transition"
+        >
+          🛒
+          <span
+            id="cart-count"
+            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-6 h-6 flex items-center justify-center rounded-full font-medium"
+            >0</span
           >
-            🛒
-            <span
-              id="cart-count"
-              class="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
-              >0</span
-            >
-          </div>
-          <button
-            onclick="logout()"
-            class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-full text-sm font-medium transition"
-          >
-            Đăng xuất
-          </button>
-        </div>
+        </a>
       </div>
     </header>
 
-    <!-- HERO -->
-    <section class="hero-bg h-screen flex items-center text-white">
-      <div class="max-w-7xl mx-auto px-6 text-center">
-        <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-          Sống Xanh - Ăn Sạch
-        </h1>
-        <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto">
-          Thực phẩm hữu cơ chất lượng cao • An toàn cho sức khỏe • Bảo vệ môi
-          trường
+    <!-- HERO SECTION - NỔI BẬT HƠN -->
+    <section class="hero-bg h-screen flex items-center text-white relative">
+      <div class="max-w-5xl mx-auto px-6 text-center z-10">
+        <p class="text-emerald-300 text-lg font-medium mb-4 tracking-widest">
+          🌱 THỰC PHẨM SẠCH - CUỘC SỐNG XANH
         </p>
-        <a
-          href="products.html"
-          class="inline-block bg-white text-emerald-700 hover:bg-emerald-50 text-lg font-semibold px-12 py-5 rounded-full transition transform hover:scale-105 shadow-lg"
-        >
-          Khám phá ngay →
-        </a>
+        <h1 class="text-6xl md:text-7xl font-bold mb-6 leading-tight hero-text">
+          Sống Xanh<br />Ăn Sạch Mỗi Ngày
+        </h1>
+        <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto text-white/90">
+          Hơn 300 sản phẩm hữu cơ được chọn lọc kỹ lưỡng từ các nông trại sạch
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="products.html"
+            class="bg-white text-emerald-700 hover:bg-emerald-50 text-xl font-semibold px-12 py-5 rounded-3xl transition transform hover:scale-105 shadow-xl"
+          >
+            Khám phá ngay
+          </a>
+          <a
+            href="about.html"
+            class="border-2 border-white hover:bg-white/10 text-xl font-semibold px-10 py-5 rounded-3xl transition"
+          >
+            Tìm hiểu về chúng tôi
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- SEARCH -->
-    <section class="max-w-4xl mx-auto -mt-8 px-6 relative z-10">
-      <div class="bg-white rounded-3xl shadow-2xl p-2">
+    <section class="max-w-4xl mx-auto -mt-8 px-6 relative z-20">
+      <div class="bg-white rounded-3xl shadow-2xl p-3">
         <input
-          type="text"
           id="searchInput"
+          type="text"
           placeholder="🔍 Tìm kiếm sản phẩm hữu cơ..."
           onkeyup="searchProducts()"
-          class="w-full px-8 py-6 rounded-3xl focus:outline-none text-lg"
+          class="w-full px-8 py-6 rounded-3xl text-lg focus:outline-none"
         />
       </div>
     </section>
 
     <!-- CATEGORIES -->
-    <section class="max-w-7xl mx-auto px-6 py-16">
-      <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
-        Danh mục sản phẩm
-      </h2>
+    <section class="max-w-7xl mx-auto px-6 py-20">
+      <h2 class="text-4xl font-bold text-center mb-12">Danh mục sản phẩm</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
         <div
-          class="category-card bg-white rounded-3xl p-8 text-center hover:shadow-xl transition cursor-pointer"
+          class="category-card bg-white rounded-3xl p-10 text-center shadow hover:shadow-2xl transition cursor-pointer"
         >
-          🥬<br /><span class="block mt-4 font-semibold text-lg">Rau củ</span>
+          🥬<br /><span class="block mt-4 text-xl font-semibold">Rau củ</span>
         </div>
         <div
-          class="category-card bg-white rounded-3xl p-8 text-center hover:shadow-xl transition cursor-pointer"
+          class="category-card bg-white rounded-3xl p-10 text-center shadow hover:shadow-2xl transition cursor-pointer"
         >
-          🍎<br /><span class="block mt-4 font-semibold text-lg">Trái cây</span>
+          🍎<br /><span class="block mt-4 text-xl font-semibold">Trái cây</span>
         </div>
         <div
-          class="category-card bg-white rounded-3xl p-8 text-center hover:shadow-xl transition cursor-pointer"
+          class="category-card bg-white rounded-3xl p-10 text-center shadow hover:shadow-2xl transition cursor-pointer"
         >
-          🥛<br /><span class="block mt-4 font-semibold text-lg">Đồ uống</span>
+          🥛<br /><span class="block mt-4 text-xl font-semibold">Đồ uống</span>
         </div>
         <div
-          class="category-card bg-white rounded-3xl p-8 text-center hover:shadow-xl transition cursor-pointer"
+          class="category-card bg-white rounded-3xl p-10 text-center shadow hover:shadow-2xl transition cursor-pointer"
         >
-          🌾<br /><span class="block mt-4 font-semibold text-lg"
-            >Ngũ cốc & Hạt</span
-          >
+          🌾<br /><span class="block mt-4 text-xl font-semibold">Ngũ cốc</span>
         </div>
       </div>
     </section>
 
     <!-- SẢN PHẨM NỔI BẬT -->
-    <section class="max-w-7xl mx-auto px-6 pb-20">
-      <div class="flex justify-between items-center mb-10">
-        <h2 class="text-3xl font-bold text-gray-800">🌿 Sản phẩm nổi bật</h2>
+    <section class="max-w-7xl mx-auto px-6 pb-24">
+      <div class="flex justify-between items-end mb-10">
+        <h2 class="text-4xl font-bold">🌿 Sản phẩm nổi bật</h2>
         <a
           href="products.html"
           class="text-emerald-600 hover:text-emerald-700 font-medium flex items-center gap-2"
@@ -150,54 +157,37 @@
 
       <div
         id="product-list"
-        class="product-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
-      ></div>
+        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+      >
+        <!-- JS load -->
+      </div>
 
-      <!-- Phân trang -->
-      <div
-        id="pagination"
-        class="flex items-center justify-center gap-3 mt-16"
-      ></div>
+      <div id="pagination" class="flex justify-center gap-3 mt-16"></div>
     </section>
 
-    <!-- BANNER -->
-    <section class="bg-emerald-800 text-white py-16">
+    <!-- BANNER KHUYẾN MÃI -->
+    <section
+      class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-16"
+    >
       <div class="max-w-4xl mx-auto text-center px-6">
-        <h2 class="text-4xl font-bold mb-4">
-          💚 Sống xanh mỗi ngày cùng EcoShop
-        </h2>
-        <p class="text-lg">
-          Cam kết mang đến những sản phẩm sạch nhất cho gia đình bạn
-        </p>
+        <h2 class="text-4xl font-bold mb-4">🎁 Ưu đãi đặc biệt hôm nay</h2>
+        <p class="text-2xl mb-8">Giảm ngay 20% cho đơn hàng đầu tiên</p>
+        <a
+          href="products.html"
+          class="inline-block bg-white text-emerald-700 px-12 py-5 rounded-3xl text-xl font-semibold hover:bg-emerald-50 transition"
+        >
+          Nhận ưu đãi ngay
+        </a>
       </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-400 py-12">
-      <div
-        class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10"
-      >
-        <div>
-          <h3 class="text-white text-2xl font-bold mb-4">🌿 EcoShop</h3>
-          <p>Thực phẩm hữu cơ • Lựa chọn xanh cho tương lai</p>
-        </div>
-        <div>
-          <h4 class="text-white mb-4">Liên hệ</h4>
-          <p>📧 ecoshop@gmail.com</p>
-          <p>📞 0123 456 789</p>
-        </div>
-        <div>
-          <h4 class="text-white mb-4">Theo dõi</h4>
-          <div class="flex gap-5 text-3xl">
-            <span class="cursor-pointer hover:text-white">📘</span>
-            <span class="cursor-pointer hover:text-white">📸</span>
-            <span class="cursor-pointer hover:text-white">🐦</span>
-          </div>
-        </div>
+    <footer class="bg-gray-900 text-gray-400 py-16">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <p class="text-2xl font-bold text-white mb-2">🌿 EcoShop</p>
+        <p>Thực phẩm sạch - Lối sống xanh</p>
+        <p class="mt-8 text-sm">© 2026 EcoShop. All rights reserved.</p>
       </div>
-      <p class="text-center mt-12 text-sm">
-        © 2026 EcoShop. All rights reserved.
-      </p>
     </footer>
 
     <script src="js/api.js"></script>

@@ -2,78 +2,179 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌿 EcoShop - Giới thiệu</title>
 
-    <title>Giới thiệu - EcoShop</title>
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <body>
-    <header class="navbar">
-      <div class="logo">🌿 EcoShop</div>
-
-      <nav>
-        <a href="index.html"> Trang chủ </a>
-
-        <a href="products.html"> Sản phẩm </a>
-
-        <a href="cart.html"> Giỏ hàng </a>
-
-        <a href="contact.html"> Liên hệ </a>
-      </nav>
+  <body class="bg-gray-50 font-sans">
+    <!-- NAVBAR -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <div
+          class="flex items-center gap-3 text-2xl font-bold text-emerald-600"
+        >
+          🌿 EcoShop
+        </div>
+        <nav
+          class="hidden md:flex items-center gap-8 text-gray-700 font-medium"
+        >
+          <a href="index.html" class="hover:text-emerald-600 transition"
+            >Trang chủ</a
+          >
+          <a href="products.html" class="hover:text-emerald-600 transition"
+            >Sản phẩm</a
+          >
+          <a href="cart.html" class="hover:text-emerald-600 transition"
+            >Giỏ hàng</a
+          >
+          <a href="about.html" class="text-emerald-600 font-semibold"
+            >Giới thiệu</a
+          >
+          <a href="contact.html" class="hover:text-emerald-600 transition"
+            >Liên hệ</a
+          >
+        </nav>
+        <a href="cart.html" class="text-3xl hover:text-emerald-600 transition"
+          >🛒</a
+        >
+      </div>
     </header>
 
-    <section class="about-page">
-      <div class="about-container">
-        <div class="about-image">
+    <!-- HERO -->
+    <section class="bg-emerald-700 text-white py-24">
+      <div class="max-w-4xl mx-auto text-center px-6">
+        <h1 class="text-5xl font-bold mb-6">Về EcoShop</h1>
+        <p class="text-xl max-w-2xl mx-auto">
+          Mang thực phẩm sạch từ nông trại đến bàn ăn của bạn
+        </p>
+      </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-6 py-16">
+      <!-- Sứ mệnh -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+        <div>
+          <h2 class="text-4xl font-bold text-gray-800 mb-6">
+            Sứ mệnh của chúng tôi
+          </h2>
+          <div class="space-y-6 text-gray-600 text-lg">
+            <p>
+              EcoShop được thành lập với sứ mệnh mang đến những sản phẩm nông
+              sản hữu cơ chất lượng cao, an toàn và bền vững cho người tiêu dùng
+              Việt Nam.
+            </p>
+            <p>
+              Chúng tôi không chỉ bán thực phẩm — chúng tôi đang góp phần xây
+              dựng một tương lai xanh và lành mạnh hơn.
+            </p>
+          </div>
+        </div>
+        <div class="rounded-3xl overflow-hidden shadow-2xl">
           <img
-            src="https://images.unsplash.com/photo-1542838132-92c53300491e"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgaGrv9wfIjuB0VW8PzypfoBG0e3zt5GSyDw&s"
+            alt="Nông trại EcoShop"
+            class="w-full"
           />
         </div>
+      </div>
 
-        <div class="about-content">
-          <h1>🌿 Về EcoShop</h1>
+      <!-- Giá trị cốt lõi -->
+      <div class="mb-24">
+        <h2 class="text-3xl font-bold text-center mb-12">Giá trị cốt lõi</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="text-center p-8 bg-white rounded-3xl shadow hover:shadow-xl transition"
+          >
+            <div class="text-6xl mb-4">🌱</div>
+            <h3 class="font-semibold text-2xl mb-3">Hữu cơ</h3>
+            <p class="text-gray-600">Sản phẩm sạch, không hóa chất</p>
+          </div>
+          <div
+            class="text-center p-8 bg-white rounded-3xl shadow hover:shadow-xl transition"
+          >
+            <div class="text-6xl mb-4">🤝</div>
+            <h3 class="font-semibold text-2xl mb-3">Minh bạch</h3>
+            <p class="text-gray-600">Nguồn gốc rõ ràng từ nông trại</p>
+          </div>
+          <div
+            class="text-center p-8 bg-white rounded-3xl shadow hover:shadow-xl transition"
+          >
+            <div class="text-6xl mb-4">🌍</div>
+            <h3 class="font-semibold text-2xl mb-3">Bền vững</h3>
+            <p class="text-gray-600">Hỗ trợ nông dân và môi trường</p>
+          </div>
+        </div>
+      </div>
 
-          <p>
-            EcoShop là cửa hàng chuyên cung cấp thực phẩm hữu cơ, rau sạch và
-            sản phẩm thân thiện môi trường.
-          </p>
-
-          <p>
-            Chúng tôi cam kết mang đến cho khách hàng những sản phẩm an toàn cho
-            sức khỏe, không hóa chất độc hại và có nguồn gốc rõ ràng.
-          </p>
-
-          <p>
-            EcoShop luôn hướng đến phong cách sống xanh, bảo vệ môi trường và
-            nâng cao chất lượng cuộc sống.
-          </p>
-
-          <div class="about-boxes">
-            <div class="box">
-              <h3>🌱 Sản phẩm sạch</h3>
-
-              <p>Đảm bảo hữu cơ 100%</p>
+      <!-- ĐỘI NGŨ (3 người) -->
+      <div>
+        <h2 class="text-3xl font-bold text-center mb-12">Đội ngũ EcoShop</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="team-card bg-white rounded-3xl overflow-hidden shadow hover:shadow-2xl transition group"
+          >
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcul5hyxR1lK_r1M7JB29GT3Dqp-Lmsmbx9Q&s"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-6 text-center">
+              <h3 class="font-semibold text-xl">VŨ VĂN TRƯỜNG</h3>
+              <p class="text-emerald-600">CEO & Founder</p>
+              <p class="text-sm text-gray-500 mt-3">
+                Người sáng lập với hơn 12 năm kinh nghiệm trong nông nghiệp hữu
+                cơ.
+              </p>
             </div>
+          </div>
 
-            <div class="box">
-              <h3>🚚 Giao hàng nhanh</h3>
-
-              <p>Ship toàn quốc</p>
+          <div
+            class="team-card bg-white rounded-3xl overflow-hidden shadow hover:shadow-2xl transition group"
+          >
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYaPum3LTB36fjwej2BVO90H6pyUZn4Sxz5g&s"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-6 text-center">
+              <h3 class="font-semibold text-xl">NGÔ NGỌC MINH</h3>
+              <p class="text-emerald-600">Giám đốc Nông trại</p>
+              <p class="text-sm text-gray-500 mt-3">
+                Chuyên gia nông nghiệp hữu cơ, quản lý các trang trại sạch.
+              </p>
             </div>
+          </div>
 
-            <div class="box">
-              <h3>💚 An toàn sức khỏe</h3>
-
-              <p>Chứng nhận chất lượng</p>
+          <div
+            class="team-card bg-white rounded-3xl overflow-hidden shadow hover:shadow-2xl transition group"
+          >
+            <img
+              src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQQMGfs_f_5_-4wJKNlEIefJgxGJM1bjbplb8vLuXf4vqcJQT_5"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-6 text-center">
+              <h3 class="font-semibold text-xl">NÔNG XUÂN PHÚ</h3>
+              <p class="text-emerald-600">Quản lý Chất lượng</p>
+              <p class="text-sm text-gray-500 mt-3">
+                Đảm bảo mọi sản phẩm đều đạt chuẩn hữu cơ trước khi đến tay
+                khách hàng.
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <footer>© 2026 EcoShop</footer>
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <p>© 2026 EcoShop - Thực phẩm hữu cơ vì sức khỏe cộng đồng</p>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
   </body>
 </html>

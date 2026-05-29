@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🌿 EcoShop - Chi tiết sản phẩm</title>
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -21,45 +19,17 @@
         >
           🌿 EcoShop
         </div>
-        <nav
-          class="hidden md:flex items-center gap-8 text-gray-700 font-medium"
-        >
-          <a href="index.html" class="hover:text-emerald-600 transition"
-            >Trang chủ</a
-          >
-          <a href="products.html" class="hover:text-emerald-600 transition"
-            >Sản phẩm</a
-          >
-          <a href="cart.html" class="hover:text-emerald-600 transition"
-            >Giỏ hàng</a
-          >
-        </nav>
-        <a href="cart.html" class="text-2xl hover:text-emerald-600 transition"
-          >🛒</a
+        <a href="products.html" class="text-emerald-600 hover:underline"
+          >← Quay lại cửa hàng</a
         >
       </div>
     </header>
 
-    <!-- PRODUCT DETAIL -->
     <section class="max-w-7xl mx-auto px-6 py-12">
-      <a
-        href="products.html"
-        class="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 mb-8 font-medium"
-      >
-        ← Quay lại danh sách sản phẩm
-      </a>
-
-      <div id="detail" class="bg-white rounded-3xl shadow-xl overflow-hidden">
-        <!-- Nội dung chi tiết sẽ được load bằng JavaScript -->
+      <div id="detail" class="bg-white rounded-3xl shadow-xl p-8 md:p-12">
+        <!-- Chi tiết sản phẩm sẽ được load bởi JS -->
       </div>
     </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-400 py-12">
-      <div class="max-w-7xl mx-auto px-6 text-center">
-        <p>© 2026 EcoShop - Thực phẩm hữu cơ sạch</p>
-      </div>
-    </footer>
 
     <script src="js/api.js"></script>
     <script src="js/detail.js"></script>
